@@ -4,12 +4,13 @@ import { removeBackground } from "@imgly/background-removal-node";
 const removeBG = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const imagePath = req.file!.buffer;
-    const blobData = await removeBackground(imagePath);
+    console.log(imagePath);
+    // const blobData = await removeBackground(imagePath);
 
-    const buffer = await blobData.arrayBuffer();
-    const base64String = Buffer.from(buffer).toString("base64");
+    // const buffer = await blobData.arrayBuffer();
+    // const base64String = Buffer.from(buffer).toString("base64");
 
-    res.json(base64String);
+    // res.json(base64String);
   } catch (error) {
     res.status(500).json({ message: "Internal Server Error" });
   }
