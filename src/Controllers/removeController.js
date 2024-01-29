@@ -1,10 +1,9 @@
-import { Request, Response, NextFunction } from "express";
-import { removeBackground } from "@imgly/background-removal-node";
+const { removeBackground } = require("@imgly/background-removal-node");
 
-const removeBG = async (req: Request, res: Response, next: NextFunction) => {
+const removeBG = async (req, res, next) => {
   try {
     if (req.file) {
-      const imagePath = req.file!.buffer;
+      const imagePath = req.file.buffer;
       const blobData = await removeBackground(imagePath);
       const buffer = await blobData.arrayBuffer();
       const base64String = Buffer.from(buffer).toString("base64");
@@ -16,4 +15,4 @@ const removeBG = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-export default { removeBG };
+module.exports = { removeBG };
