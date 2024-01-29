@@ -4,9 +4,8 @@ import { removeBackground } from "@imgly/background-removal-node";
 const removeBG = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const imagePath = req.file!.buffer;
-    console.log(imagePath);
-    // const blobData = await removeBackground(imagePath);
-
+    const blobData = await removeBackground(imagePath);
+    res.json(blobData);
     // const buffer = await blobData.arrayBuffer();
     // const base64String = Buffer.from(buffer).toString("base64");
 
